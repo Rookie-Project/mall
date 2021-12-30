@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @createDate 2021/12/27
  * @description
  */
-@Repository
+
 public interface UserMapper extends BaseMapper<User> {
 
 }

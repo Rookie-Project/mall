@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * @date: 2021/12/30
  * @description: TODO 类描述
  **/
-@Repository
+
 public interface PmsBrandMapper extends BaseMapper<PmsBrand> {
 }
