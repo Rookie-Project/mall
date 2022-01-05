@@ -1,5 +1,7 @@
 package com.rookie.mall.demo.controller;
 
+import com.rookie.mall.demo.config.PageResult;
+import com.rookie.mall.demo.config.Result;
 import com.rookie.mall.demo.entity.PmsBrand;
 import com.rookie.mall.demo.service.PmsBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class PmsBrandController {
         service.updatePmsBrandById(pmsBrand);
     }
 
-    @RequestMapping("/upt")
+    @RequestMapping("/uptByMap")
     public void updateByMap(@RequestBody PmsBrand pmsBrand, Map<String,Object> map) {
         service.updatePmsBrand(pmsBrand,map);
     }
@@ -41,8 +43,13 @@ public class PmsBrandController {
         service.getPmsBrand(id);
     }
 
-    @RequestMapping("/get")
+    @RequestMapping("/getByMap")
     public void get(Map<String,Object> map) {
         service.getPmsBrand(map);
+    }
+
+    @RequestMapping("/getList")
+    public Result get(@RequestBody PageResult<PmsBrand> pmsBrandPageResult) {
+        return service.getList(pmsBrandPageResult);
     }
 }

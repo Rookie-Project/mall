@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Data
 public class PmsBrand implements Serializable {
+    private static final long serialVersionUID = 3318929062133160067L;
     @TableId(type = IdType.AUTO)
     private Long id;
 
@@ -66,6 +67,5 @@ public class PmsBrand implements Serializable {
      */
     private String brandStory;
 
-    private static final long serialVersionUID = 1L;
 
 }
