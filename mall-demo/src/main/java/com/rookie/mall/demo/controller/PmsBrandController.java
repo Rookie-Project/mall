@@ -39,8 +39,9 @@ public class PmsBrandController {
     }
 
     @RequestMapping("/get")
-    public void get(Long id) {
-        service.getPmsBrand(id);
+    public Result<PmsBrand> get(Long id) {
+        Result<PmsBrand> pmsBrand = service.getPmsBrand(id);
+        return service.getPmsBrand(id);
     }
 
     @RequestMapping("/getByMap")

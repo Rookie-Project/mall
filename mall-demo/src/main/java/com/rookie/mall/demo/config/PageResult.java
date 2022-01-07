@@ -3,7 +3,9 @@ package com.rookie.mall.demo.config;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rookie.mall.demo.entity.PmsBrand;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Value;
 
 import java.util.List;
 import java.util.Map;
@@ -16,9 +18,9 @@ import java.util.Map;
 @Data
 public class PageResult<T> {
     //当前页
-    private Long pageNum;
+    private Long pageNum = 1L;
     //每页记录数
-    private Long pageSize;
+    private Long pageSize = 10L;
     //总页数
     private Long totalPage;
     //总数

@@ -9,6 +9,10 @@ import com.rookie.mall.demo.config.Result;
 import com.rookie.mall.demo.dao.PmsBrandMapper;
 import com.rookie.mall.demo.entity.PmsBrand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -16,9 +20,10 @@ import java.util.Map;
 /**
  * @author: chen
  * @date: 2021/12/30
- * @description: TODO 类描述
+ * @description: 品牌管理：二级缓存
  **/
 @Service
+@CacheConfig(cacheNames = "PmsBrand")
 public class PmsBrandService {
     @Autowired
     private PmsBrandMapper pmsBrandMapper;
@@ -27,18 +32,24 @@ public class PmsBrandService {
         pmsBrandMapper.insert(pmsBrand);
     }
 
-    public void updatePmsBrandById(PmsBrand pmsBrand) {
+    @CachePut(key = "#pmsBrand.id")
+    public PmsBrand updatePmsBrandById(PmsBrand pmsBrand) {
         pmsBrandMapper.updateById(pmsBrand);
+        return pmsBrandMapper.selectById(pmsBrand.getId());
     }
 
+    @CacheEvict(key = "#pmsBrand.id")
     public void updatePmsBrand(PmsBrand pmsBrand, Map<String,Object> whereMap) {
         UpdateWrapper<PmsBrand> wrapper = new UpdateWrapper<>();
         //TODO
         pmsBrandMapper.update(pmsBrand, wrapper);
     }
 
-    public void getPmsBrand(Long id) {
-        pmsBrandMapper.selectById(id);
+
+    @Cacheable(key = "#id",unless = "#result.data == null ")
+    public Result<PmsBrand> getPmsBrand(Long id) {
+        PmsBrand pmsBrand = pmsBrandMapper.selectById(id);
+        return Result.success(pmsBrand);
     }
 
     public void getPmsBrand(Map<String,Object> whereMap) {
