@@ -40,7 +40,6 @@ public class PmsBrandController {
 
     @RequestMapping("/get")
     public Result<PmsBrand> get(Long id) {
-        Result<PmsBrand> pmsBrand = service.getPmsBrand(id);
         return service.getPmsBrand(id);
     }
 
