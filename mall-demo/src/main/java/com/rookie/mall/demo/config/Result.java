@@ -40,6 +40,9 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
+    public static <T> Result<T> success() {
+        return success(null);
+    }
 
     public static <T> Result<T> success(T data) {
         return new Result<T>(CodeEnum.SUCCESS.getCode(), CodeEnum.SUCCESS.getMessage(), data);
@@ -47,6 +50,13 @@ public class Result<T> implements Serializable {
 
     public static Result error() {
         return new Result<>(CodeEnum.ERROR.getCode(), CodeEnum.ERROR.getMessage(), null);
+    }
+
+    public static <T> Result<T> code(String code, String message) {
+        return Result.code(code,message,null);
+    }
+    public static <T> Result<T> code(String code, String message,T data) {
+        return new Result<T>(code, message, data);
     }
 
     public static <T> Result<T> error(T data) {

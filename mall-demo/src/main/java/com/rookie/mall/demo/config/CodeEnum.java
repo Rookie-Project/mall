@@ -11,6 +11,8 @@ import lombok.Data;
 public enum CodeEnum {
 
     SUCCESS("00000000", "交易成功"),
+    AUTH_CODE_ERROR("MALL0001", "验证码不一致"),
+    AUTH_CODE_EXPIRED("MALL0002", "验证码已失效"),
     ERROR("99999999", "系统错误");
 
 

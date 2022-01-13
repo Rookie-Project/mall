@@ -38,7 +38,7 @@ public class CacheConfiguration {
     private Map<String, RedisCacheConfiguration> getRedisCacheConfigurationMap () {
         Map<String, RedisCacheConfiguration> map = new HashMap<>();
         // 有效时间1分钟
-        map.put("m1",this.getRedisCacheConfigurationWithTtl(1 * 60));
+        map.put("authCode",this.getRedisCacheConfigurationWithTtl(1 * 60));
 
         // 有效时间30分钟
         map.put("m30",this.getRedisCacheConfigurationWithTtl(30 * 60));
@@ -55,7 +55,7 @@ public class CacheConfiguration {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeValuesWith(pair)   //设置redis的序列话方式
                 .entryTtl(Duration.ofSeconds(seconds))
-                .disableKeyPrefix()          //禁止该缓冲使用redis前缀
+                //.disableKeyPrefix()          //禁止该缓冲使用redis前缀
                 .disableCachingNullValues(); //禁止对null值进行缓冲
         return redisCacheConfiguration;
     }

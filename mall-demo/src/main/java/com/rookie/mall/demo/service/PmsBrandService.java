@@ -32,13 +32,13 @@ public class PmsBrandService {
         pmsBrandMapper.insert(pmsBrand);
     }
 
-    @CachePut(key = "#pmsBrand.id")
+    @CachePut(key = "'id_'+#pmsBrand.id")
     public PmsBrand updatePmsBrandById(PmsBrand pmsBrand) {
         pmsBrandMapper.updateById(pmsBrand);
         return pmsBrandMapper.selectById(pmsBrand.getId());
     }
 
-    @CacheEvict(key = "#pmsBrand.id")
+    @CacheEvict(key = "'id_'+#pmsBrand.id")
     public void updatePmsBrand(PmsBrand pmsBrand, Map<String,Object> whereMap) {
         UpdateWrapper<PmsBrand> wrapper = new UpdateWrapper<>();
         //TODO
@@ -46,7 +46,7 @@ public class PmsBrandService {
     }
 
 
-    @Cacheable(key = "#id",unless = "#result.data == null ")
+    @Cacheable(key = "'id_'+#id",unless = "#result.data == null ")
     public Result<PmsBrand> getPmsBrand(Long id) {
         PmsBrand pmsBrand = pmsBrandMapper.selectById(id);
         return Result.success(pmsBrand);
