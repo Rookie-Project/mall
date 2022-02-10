@@ -26,6 +26,7 @@ import java.util.Map;
 @CacheConfig(cacheNames = "PmsBrand")
 public class PmsBrandService {
     @Autowired
+    
     private PmsBrandMapper pmsBrandMapper;
 
     public void addPmsBrand(PmsBrand pmsBrand) {

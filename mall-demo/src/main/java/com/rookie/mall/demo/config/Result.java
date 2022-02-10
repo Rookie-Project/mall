@@ -1,7 +1,6 @@
 package com.rookie.mall.demo.config;
 
 import lombok.Data;
-import org.checkerframework.checker.units.qual.C;
 
 import java.io.Serializable;
 
