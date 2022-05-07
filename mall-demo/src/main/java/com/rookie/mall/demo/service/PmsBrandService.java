@@ -15,7 +15,11 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author: chen
@@ -28,7 +32,6 @@ public class PmsBrandService {
     @Autowired
     
     private PmsBrandMapper pmsBrandMapper;
-
     public void addPmsBrand(PmsBrand pmsBrand) {
         pmsBrandMapper.insert(pmsBrand);
     }
